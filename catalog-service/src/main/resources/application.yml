@@ -11,4 +11,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
+# expose all git info
+  info:
+    git:
+      mode: FULL
