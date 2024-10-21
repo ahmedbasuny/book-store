@@ -4,6 +4,19 @@
   <groupId>com.book.store.system</groupId>
   <artifactId>book-store</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Archetype - book-store</name>
-  <url>http://maven.apache.org</url>
+  <name>book-store</name>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java-version>23</java-version>
+    <maven.compiler.source>${java-version}</maven.compiler.source>
+    <maven.compiler.target>${java-version}</maven.compiler.target>
+    <maven.compiler.release>${java-version}</maven.compiler.release>
+  </properties>
+
+  <modules>
+    <module>catalog-service</module>
+  </modules>
+
 </project>

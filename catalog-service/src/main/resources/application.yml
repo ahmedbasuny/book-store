@@ -1,1 +1,14 @@
-spring.application.name=catalog-service
+spring:
+  application:
+    name: catalog-service
+
+server:
+  port: 8081
+  shutdown: GRACEFUL
+
+# expose all actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
