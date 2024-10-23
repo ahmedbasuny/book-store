@@ -15,7 +15,7 @@ jobs:
       working-directory: ./catalog-service
     defaults:
       run:
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.working-directory  }}
     steps:
       - uses: actions/checkout@v4
 
