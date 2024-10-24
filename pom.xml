@@ -12,6 +12,7 @@
     <java.version>23</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
+    <spotless-java-format.version>2.35.0</spotless-java-format.version>
   </properties>
 
   <modules>
@@ -29,7 +30,7 @@
             <importOrder />
             <removeUnusedImports />
             <palantirJavaFormat>
-              <version>2.35.0</version>
+              <version>${spotless-java-format.version}</version>
             </palantirJavaFormat>
             <formatAnnotations />
           </java>

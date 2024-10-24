@@ -17,9 +17,9 @@ jobs:
       run:
         working-directory: ${{ env.working-directory }}
     steps:
+
       - uses: actions/checkout@v4
 
-      # Make mvnw executable
       - name: Set executable permissions for mvnw
         run: chmod +x ./mvnw
 

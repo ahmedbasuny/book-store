@@ -1,16 +1,6 @@
-version: '3.8'  # Specify Docker Compose version
+version: '3.8'
 name: 'book-store'
 services:
-  portainer: # admin123456789
-    image: portainer/portainer-ce
-    container_name: portainer
-    restart: always
-    ports:
-      - "9000:9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-
   catalog-db:
     image: postgres:16-alpine
     container_name: catalog-db
@@ -29,7 +19,3 @@ services:
       resources:
         limits:
           memory: 500m
-
-
-volumes:
-  portainer_data:

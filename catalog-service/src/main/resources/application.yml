@@ -2,6 +2,11 @@ spring:
   application:
     name: catalog-service
 
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:15432/postgres}
     username: ${DB_USERNAME:postgres}
@@ -17,6 +22,7 @@ management:
     web:
       exposure:
         include: "*"
+
 # expose all git info
   info:
     git:
