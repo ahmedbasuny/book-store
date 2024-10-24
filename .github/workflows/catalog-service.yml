@@ -23,10 +23,6 @@ jobs:
       - name: Set executable permissions for mvnw
         run: chmod +x ./mvnw
 
-      # Make mvnw executable
-      - name: Set executable permissions for mvnw
-        run: chmod +x ./catalog-service/mvnw
-
       - name: Setup Java Version 23
         uses: actions/setup-java@v4
         with:
