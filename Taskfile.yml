@@ -5,7 +5,7 @@ vars:
   MVNW: '{{if eq .GOOS "windows"}}mvnw.cmd{{else}}./mvnw{{end}}'
   DC_DIR: "deployment/docker-compose"
   INFRA_DC_FILE: "{{.DC_DIR}}/infra.yml"
-  PORTAINER_DC_FILE: "{{.DC_DIR}}/portainer.yml"
+  DEV_DC_FILE: "{{.DC_DIR}}/dev.yml"
 
 tasks:
   default:
@@ -20,17 +20,24 @@ tasks:
     cmds:
       - "{{.MVNW}} spotless:apply"
 
-  strat_portainer:
+  start_dev:
     cmds:
-      - "docker compose -f {{.PORTAINER_DC_FILE}} up -d"
+      - "docker compose -f {{.DEV_DC_FILE}} up -d"
 
-  stop_portainer:
+  stop_dev:
     cmds:
-      - "docker compose -f {{.PORTAINER_DC_FILE}} stop"
-      - "docker compose -f {{.PORTAINER_DC_FILE}} rm -f"
+      - "docker compose -f {{.DEV_DC_FILE}} stop"
+      - "docker compose -f {{.DEV_DC_FILE}} rm -f"
+
+  restart_dev:
+    cmds:
+      - task: stop_dev
+      - task: sleep
+      - task: start_dev
 
   start_infra:
     cmds:
+      - "docker network create dev-network"
       - "docker compose -f {{.INFRA_DC_FILE}} up -d"
 
   stop_infra:
@@ -45,7 +52,4 @@ tasks:
       - task: start_infra
 
   sleep:
-    vars:
-      DURATION: "{{default 5 .DURATION}}"
-    cmds:
-      - "{{.SLEEP_CMD}} {{.DURATION}}"
+    delay: "5s"

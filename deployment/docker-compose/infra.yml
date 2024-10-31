@@ -1,13 +1,15 @@
-version: '3.8'
+#version: '3.8'
 name: 'book-store'
 services:
   catalog-db:
     image: postgres:16-alpine
     container_name: catalog-db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - catalog_db:/data/postgres
     ports:
       - "15432:5432"
     healthcheck:
@@ -19,3 +21,13 @@ services:
       resources:
         limits:
           memory: 500m
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    external: true
+
+volumes:
+  catalog_db:
+
