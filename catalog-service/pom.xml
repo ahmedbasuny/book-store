@@ -21,6 +21,7 @@
 		<dockerImageName>bookstore-${project.artifactId}:${project.version}</dockerImageName>
 		<spring-doc.version>2.6.0</spring-doc.version>
 		<spotless-java-format.version>2.35.0</spotless-java-format.version>
+		<lombok.version>1.18.34</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -47,6 +48,12 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
