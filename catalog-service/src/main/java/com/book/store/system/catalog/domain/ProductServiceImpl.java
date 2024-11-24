@@ -1,5 +1,6 @@
 package com.book.store.system.catalog.domain;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,8 +20,11 @@ class ProductServiceImpl implements ProductService {
     public Page<Product> getProducts(int pageNumber, int pageSize) {
         Sort sort = Sort.by("name").ascending();
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
-        return productRepository.findAll(pageable)
-                .map(ProductMapper::productEntityToProduct);
+        return productRepository.findAll(pageable).map(ProductMapper::productEntityToProduct);
     }
 
+    @Override
+    public Optional<Product> getProductByCode(String code) {
+        return productRepository.findByCode(code).map(ProductMapper::productEntityToProduct);
+    }
 }

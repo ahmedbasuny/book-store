@@ -18,10 +18,11 @@
 		<java.version>23</java.version>
 		<springdoc-openapi.version>2.5.0</springdoc-openapi.version>
 		<spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
-		<dockerImageName>bookstore-${project.artifactId}:${project.version}</dockerImageName>
+		<docker-image-name>ahmedbasuny/bookstore-${project.artifactId}</docker-image-name>
 		<spring-doc.version>2.6.0</spring-doc.version>
 		<spotless-java-format.version>2.35.0</spotless-java-format.version>
 		<lombok.version>1.18.34</lombok.version>
+		<lombok-plugin.version>1.18.20.0</lombok-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -114,6 +115,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>${docker-image-name}</name>
+<!--						<builder>dashaun/builder:tiny</builder>  to support mac m based-->
+					</image>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -121,6 +128,20 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>io.github.git-commit-id</groupId>
