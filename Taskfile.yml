@@ -5,7 +5,6 @@ vars:
   MVNW: '{{if eq .GOOS "windows"}}mvnw.cmd{{else}}./mvnw{{end}}'
   DC_DIR: "deployment/docker-compose"
   INFRA_DC_FILE: "{{.DC_DIR}}/infra.yml"
-  DEV_DC_FILE: "{{.DC_DIR}}/dev.yml"
 
 tasks:
   default:
@@ -20,24 +19,13 @@ tasks:
     cmds:
       - "{{.MVNW}} spotless:apply"
 
-  start_dev:
+  build:
     cmds:
-      - "docker compose -f {{.DEV_DC_FILE}} up -d"
-
-  stop_dev:
-    cmds:
-      - "docker compose -f {{.DEV_DC_FILE}} stop"
-      - "docker compose -f {{.DEV_DC_FILE}} rm -f"
-
-  restart_dev:
-    cmds:
-      - task: stop_dev
-      - task: sleep
-      - task: start_dev
+      - "{{.MVNW}} -pl catalog-service spring-boot:build-image -DskipTests"
 
   start_infra:
+    deps: [build]
     cmds:
-      - "docker network create dev-network"
       - "docker compose -f {{.INFRA_DC_FILE}} up -d"
 
   stop_infra:
