@@ -30,3 +30,4 @@ class ProductController {
                 .orElseThrow(() -> ProductNotFoundException.forCode(code));
     }
 }
+// fire
