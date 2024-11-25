@@ -11,7 +11,7 @@ tasks:
     cmds:
       - task: test
   test:
-    deps: [format]
+    deps: [ format ]
     cmds:
       - "{{.MVNW}} clean verify"
 
@@ -20,11 +20,13 @@ tasks:
       - "{{.MVNW}} spotless:apply"
 
   build:
+    deps: [ format ]
     cmds:
       - "{{.MVNW}} -pl catalog-service spring-boot:build-image -DskipTests"
+      - "{{.MVNW}} -pl order-service spring-boot:build-image -DskipTests"
 
   start_infra:
-    deps: [build]
+    deps: [ build ]
     cmds:
       - "docker compose -f {{.INFRA_DC_FILE}} up -d"
 
