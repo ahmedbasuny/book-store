@@ -124,7 +124,11 @@ services:
     entrypoint:
       - "/bin/sh"
       - "-c"
-      - "/bin/echo 'catalog-db:5432:*:postgres:postgres' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
+      - |
+        echo 'catalog-db:5432:*:postgres:postgres' > /tmp/pgpassfile && \
+        echo 'order-db:5432:*:postgres:postgres' >> /tmp/pgpassfile && \
+        chmod 600 /tmp/pgpassfile && \
+        /entrypoint.sh
 
   portainer: # admin123456789
     image: portainer/portainer-ce

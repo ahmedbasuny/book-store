@@ -1,12 +1,23 @@
 {
   "Servers": {
     "1": {
-      "Name": "postgres",
+      "Name": "catalog-db",
       "Group": "Servers",
       "Port": 5432,
       "Username": "postgres",
       "Password": "postgres",
       "Host": "catalog-db",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres",
+      "PassFile": "/tmp/pgpassfile"
+    },
+    "2": {
+      "Name": "order-db",
+      "Group": "Servers",
+      "Port": 5432,
+      "Username": "postgres",
+      "Password": "postgres",
+      "Host": "order-db",
       "SSLMode": "prefer",
       "MaintenanceDB": "postgres",
       "PassFile": "/tmp/pgpassfile"
