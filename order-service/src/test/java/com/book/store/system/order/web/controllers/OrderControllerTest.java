@@ -1,5 +1,7 @@
 package com.book.store.system.order.web.controllers;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.notNullValue;
 
 import com.book.store.system.order.AbstractIntegrationTest;
 import com.book.store.system.order.domain.dtos.CreateOrderRequest;
@@ -9,16 +11,14 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.notNullValue;
-
 class OrderControllerTest extends AbstractIntegrationTest {
 
     @Nested
     class CreateOrderTests {
         @Test
         void shouldCreateOrderSuccessfully() {
-            String payload = """
+            String payload =
+                    """
                     {
                         "customer": {
                             "name": "Ahmed Basuny",
@@ -63,5 +63,4 @@ class OrderControllerTest extends AbstractIntegrationTest {
                     .statusCode(HttpStatus.BAD_REQUEST.value());
         }
     }
-
 }
