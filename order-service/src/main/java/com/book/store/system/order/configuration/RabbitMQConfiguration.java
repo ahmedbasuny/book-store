@@ -1,6 +1,7 @@
 package com.book.store.system.order.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -13,13 +14,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
 class RabbitMQConfiguration {
 
     private final RabbitMQProperties rabbitMQProperties;
-
-    RabbitMQConfiguration(RabbitMQProperties rabbitMQProperties) {
-        this.rabbitMQProperties = rabbitMQProperties;
-    }
 
     @Bean
     DirectExchange exchange() {

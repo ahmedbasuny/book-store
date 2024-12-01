@@ -24,6 +24,7 @@
         <spotless-java-format.version>2.35.0</spotless-java-format.version>
         <lombok.version>1.18.34</lombok.version>
         <lombok-plugin.version>1.18.20.0</lombok-plugin.version>
+        <instancio.version>4.5.1</instancio.version>
     </properties>
     <dependencies>
         <dependency>
@@ -72,7 +73,14 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.instancio</groupId>
+            <artifactId>instancio-junit</artifactId>
+            <version>${instancio.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -150,6 +158,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -157,6 +166,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
