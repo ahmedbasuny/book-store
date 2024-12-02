@@ -2,8 +2,8 @@ package com.book.store.system.order.domain;
 
 import com.book.store.system.order.client.catalog.CatalogServiceClient;
 import com.book.store.system.order.client.catalog.Product;
-import com.book.store.system.order.domain.models.CreateOrderRequest;
 import com.book.store.system.order.domain.exceptions.InvalidOrderException;
+import com.book.store.system.order.domain.models.CreateOrderRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

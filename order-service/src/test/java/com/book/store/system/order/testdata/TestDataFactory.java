@@ -2,8 +2,8 @@ package com.book.store.system.order.testdata;
 
 import static org.instancio.Select.field;
 
-import com.book.store.system.order.domain.models.CreateOrderRequest;
 import com.book.store.system.order.domain.models.Address;
+import com.book.store.system.order.domain.models.CreateOrderRequest;
 import com.book.store.system.order.domain.models.Customer;
 import com.book.store.system.order.domain.models.OrderItem;
 import java.math.BigDecimal;

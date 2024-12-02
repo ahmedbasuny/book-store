@@ -1,9 +1,7 @@
 package com.book.store.system.order.client.catalog;
 
 import com.book.store.system.order.configuration.ApplicationProperties;
-
 import java.time.Duration;
-
 import org.springframework.boot.http.client.ClientHttpRequestFactoryBuilder;
 import org.springframework.boot.http.client.ClientHttpRequestFactorySettings;
 import org.springframework.context.annotation.Bean;
