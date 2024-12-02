@@ -1,7 +1,7 @@
 package com.book.store.system.order.domain;
 
-import com.book.store.system.order.domain.dtos.CreateOrderRequest;
-import com.book.store.system.order.domain.dtos.CreateOrderResponse;
+import com.book.store.system.order.domain.models.CreateOrderRequest;
+import com.book.store.system.order.domain.models.CreateOrderResponse;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 

@@ -2,8 +2,8 @@ package com.book.store.system.order.web.controllers;
 
 import com.book.store.system.order.domain.OrderService;
 import com.book.store.system.order.domain.SecurityService;
-import com.book.store.system.order.domain.dtos.CreateOrderRequest;
-import com.book.store.system.order.domain.dtos.CreateOrderResponse;
+import com.book.store.system.order.domain.models.CreateOrderRequest;
+import com.book.store.system.order.domain.models.CreateOrderResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

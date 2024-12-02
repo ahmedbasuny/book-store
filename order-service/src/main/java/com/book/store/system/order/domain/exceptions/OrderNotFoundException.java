@@ -1,4 +1,4 @@
-package com.book.store.system.order.domain;
+package com.book.store.system.order.domain.exceptions;
 
 public class OrderNotFoundException extends RuntimeException {
 

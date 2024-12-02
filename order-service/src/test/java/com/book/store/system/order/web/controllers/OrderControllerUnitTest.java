@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.book.store.system.order.domain.OrderService;
 import com.book.store.system.order.domain.SecurityService;
-import com.book.store.system.order.domain.dtos.CreateOrderRequest;
+import com.book.store.system.order.domain.models.CreateOrderRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +47,7 @@ class OrderControllerUnitTest {
     @ParameterizedTest(name = "[{index}]-{0}")
     @MethodSource("createInvalidOrderRequestProvider")
     void shouldReturnBadRequestWhenOrderPayloadIsInvalid(CreateOrderRequest request) throws Exception {
-        given(orderService.createOrder(eq("siva"), any(CreateOrderRequest.class)))
+        given(orderService.createOrder(eq("ahmedbasuny"), any(CreateOrderRequest.class)))
                 .willReturn(null);
 
         mockMvc.perform(post("/api/v1/orders")

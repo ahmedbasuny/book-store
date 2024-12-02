@@ -1,8 +1,5 @@
-package com.book.store.system.order.domain.dtos;
+package com.book.store.system.order.domain.models;
 
-import com.book.store.system.order.domain.models.Address;
-import com.book.store.system.order.domain.models.Customer;
-import com.book.store.system.order.domain.models.OrderItem;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import java.util.Set;

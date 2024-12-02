@@ -41,8 +41,25 @@ orders:
   delivered-orders-queue: delivered-orders
   cancelled-orders-queue: cancelled-orders
   error-orders-queue: error-orders
+  catalog-service-url: http://catalog-service:8081
 
 logging:
   level:
     org.springframework.amqp: DEBUG
+
+resilience4j:
+  retry:
+    backends:
+      catalog-service:
+        maxAttempts: 5
+        waitDuration: 1s
+  circuitbreaker:
+    backends:
+      catalog-service:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 6
+        minimumNumberOfCalls: 4
+        waitDurationInOpenState: 20s
+        permittedNumberOfCallsInHalfOpenState: 2
+        failureRateThreshold: 50
 

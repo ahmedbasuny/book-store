@@ -25,6 +25,8 @@
         <lombok.version>1.18.34</lombok.version>
         <lombok-plugin.version>1.18.20.0</lombok-plugin.version>
         <instancio.version>4.5.1</instancio.version>
+        <wiremock.version>3.10.0</wiremock.version>
+        <wiremock-testcontainers.version>1.0-alpha-14</wiremock-testcontainers.version>
     </properties>
     <dependencies>
         <dependency>
@@ -66,23 +68,11 @@
             <version>${spring-doc.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.instancio</groupId>
-            <artifactId>instancio-junit</artifactId>
-            <version>${instancio.version}</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -104,6 +94,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -134,6 +125,30 @@
             <artifactId>rabbitmq</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.instancio</groupId>
+            <artifactId>instancio-junit</artifactId>
+            <version>${instancio.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>${wiremock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wiremock.integrations.testcontainers</groupId>
+            <artifactId>wiremock-testcontainers-module</artifactId>
+            <version>${wiremock-testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -199,12 +214,12 @@
                 <version>${spotless-maven-plugin.version}</version>
                 <configuration>
                     <java>
-                        <importOrder />
-                        <removeUnusedImports />
+                        <importOrder/>
+                        <removeUnusedImports/>
                         <palantirJavaFormat>
                             <version>${spotless-java-format.version}</version>
                         </palantirJavaFormat>
-                        <formatAnnotations />
+                        <formatAnnotations/>
                     </java>
                 </configuration>
                 <executions>

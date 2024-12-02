@@ -1,6 +1,7 @@
 package com.book.store.system.order.web.exception;
 
-import com.book.store.system.order.domain.OrderNotFoundException;
+import com.book.store.system.order.domain.exceptions.InvalidOrderException;
+import com.book.store.system.order.domain.exceptions.OrderNotFoundException;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +54,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     ProblemDetail handle(OrderNotFoundException exception) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
         problemDetail.setTitle("Order Not Found");
+        problemDetail.setProperty(SERVICE_KEY, SERVICE_NAME);
+        problemDetail.setProperty(TIMESTAMP_KEY, Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(InvalidOrderException.class)
+    ProblemDetail handle(InvalidOrderException exception) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
+        problemDetail.setTitle("Invalid Order");
         problemDetail.setProperty(SERVICE_KEY, SERVICE_NAME);
         problemDetail.setProperty(TIMESTAMP_KEY, Instant.now());
         return problemDetail;

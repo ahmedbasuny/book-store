@@ -1,6 +1,6 @@
 package com.book.store.system.order.domain;
 
-import com.book.store.system.order.domain.dtos.CreateOrderRequest;
+import com.book.store.system.order.domain.models.CreateOrderRequest;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
