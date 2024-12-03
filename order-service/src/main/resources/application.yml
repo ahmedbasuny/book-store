@@ -42,6 +42,8 @@ orders:
   cancelled-orders-queue: cancelled-orders
   error-orders-queue: error-orders
   catalog-service-url: http://catalog-service:8081
+  publish-order-events-job-cron: "*/5 * * * * *"
+  new-orders-job-cron: "*/10 * * * * *"
 
 logging:
   level:
@@ -51,8 +53,8 @@ resilience4j:
   retry:
     backends:
       catalog-service:
-        maxAttempts: 5
-        waitDuration: 1s
+        maxAttempts: 2
+        waitDuration: 2s
   circuitbreaker:
     backends:
       catalog-service:

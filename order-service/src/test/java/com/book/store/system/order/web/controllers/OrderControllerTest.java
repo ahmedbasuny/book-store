@@ -1,17 +1,24 @@
 package com.book.store.system.order.web.controllers;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 import com.book.store.system.order.AbstractIntegrationTest;
 import com.book.store.system.order.domain.models.CreateOrderRequest;
+import com.book.store.system.order.domain.models.OrderSummary;
 import com.book.store.system.order.testdata.TestDataFactory;
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 import java.math.BigDecimal;
+import java.util.List;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.jdbc.Sql;
 
+@Sql("/test-orders.sql")
 class OrderControllerTest extends AbstractIntegrationTest {
 
     @Nested
@@ -63,6 +70,37 @@ class OrderControllerTest extends AbstractIntegrationTest {
                     .post("/api/v1/orders")
                     .then()
                     .statusCode(HttpStatus.BAD_REQUEST.value());
+        }
+    }
+
+    @Nested
+    class GetOrdersTests {
+        @Test
+        void shouldGetOrdersSuccessfully() {
+            List<OrderSummary> orderSummaries = given().when()
+                    .get("/api/v1/orders")
+                    .then()
+                    .statusCode(HttpStatus.OK.value())
+                    .extract()
+                    .body()
+                    .as(new TypeRef<>() {});
+
+            assertThat(orderSummaries).hasSize(2);
+        }
+    }
+
+    @Nested
+    class GetOrderByOrderNumberTests {
+        String orderNumber = "order-123";
+
+        @Test
+        void shouldGetOrderSuccessfully() {
+            given().when()
+                    .get("/api/v1/orders/{orderNumber}", orderNumber)
+                    .then()
+                    .statusCode(HttpStatus.OK.value())
+                    .body("orderNumber", is(orderNumber))
+                    .body("items.size()", is(2));
         }
     }
 }

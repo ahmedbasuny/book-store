@@ -1,11 +1,14 @@
 package com.book.store.system.order.domain;
 
+import com.book.store.system.order.domain.enums.OrderStatus;
 import com.book.store.system.order.domain.models.Address;
 import com.book.store.system.order.domain.models.Customer;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data
 @NoArgsConstructor
@@ -58,8 +61,10 @@ class OrderEntity {
     private String comments;
 
     @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "updated_at")
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

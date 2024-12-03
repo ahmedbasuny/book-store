@@ -12,7 +12,7 @@ import org.springframework.web.client.RestClient;
 @Configuration
 class CatalogServiceClientConfig {
 
-    private final Duration TIME_OUT_VALUE = Duration.ofSeconds(5);
+    private static final Duration TIME_OUT_VALUE = Duration.ofSeconds(5);
 
     @Bean
     RestClient restClient(ApplicationProperties applicationProperties) {

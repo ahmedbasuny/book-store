@@ -27,6 +27,7 @@
         <instancio.version>4.5.1</instancio.version>
         <wiremock.version>3.10.0</wiremock.version>
         <wiremock-testcontainers.version>1.0-alpha-14</wiremock-testcontainers.version>
+        <shedlock.version>6.0.2</shedlock.version>
     </properties>
     <dependencies>
         <dependency>
@@ -93,6 +94,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>net.javacrumbs.shedlock</groupId>
+            <artifactId>shedlock-spring</artifactId>
+            <version>${shedlock.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.javacrumbs.shedlock</groupId>
+            <artifactId>shedlock-provider-jdbc-template</artifactId>
+            <version>${shedlock.version}</version>
         </dependency>
 
         <dependency>
