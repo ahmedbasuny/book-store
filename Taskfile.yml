@@ -24,6 +24,7 @@ tasks:
     cmds:
       - "{{.MVNW}} -pl catalog-service spring-boot:build-image -DskipTests"
       - "{{.MVNW}} -pl order-service spring-boot:build-image -DskipTests"
+      - "{{.MVNW}} -pl notification-service spring-boot:build-image -DskipTests"
 
   build-catalog:
     deps: [ format ]
@@ -34,6 +35,11 @@ tasks:
     deps: [ format ]
     cmds:
       - "{{.MVNW}} -pl order-service spring-boot:build-image -DskipTests"
+
+  build-notification:
+    deps: [ format ]
+    cmds:
+      - "{{.MVNW}} -pl notification-service spring-boot:build-image -DskipTests"
 
   start_infra:
     deps: [ build ]

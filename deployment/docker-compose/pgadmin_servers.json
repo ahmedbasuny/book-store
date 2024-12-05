@@ -21,6 +21,17 @@
       "SSLMode": "prefer",
       "MaintenanceDB": "postgres",
       "PassFile": "/tmp/pgpassfile"
+    },
+    "3": {
+      "Name": "notification-db",
+      "Group": "Servers",
+      "Port": 5432,
+      "Username": "postgres",
+      "Password": "postgres",
+      "Host": "notification-db",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres",
+      "PassFile": "/tmp/pgpassfile"
     }
   }
 }

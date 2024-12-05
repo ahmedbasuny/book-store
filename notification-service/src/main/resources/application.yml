@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: notification-service
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:35432}/${DB_NAME:postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:rabbitmq}
+    password: ${RABBITMQ_PASSWORD:rabbitmq}
+
+  mail:
+    host: ${MAIL_HOST:127.0.0.1}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:PLACEHOLDER}
+    password: ${MAIL_PASSWORD:PLACEHOLDER}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8083
+  shutdown: GRACEFUL
+
+# expose all actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  # expose all git info
+  info:
+    git:
+      mode: FULL
+
+notifications:
+  order-events-exchange: orders-exchange
+  new-orders-queue: new-orders
+  delivered-orders-queue: delivered-orders
+  cancelled-orders-queue: cancelled-orders
+  error-orders-queue: error-orders
+  support-email: ahmedbasuny@gmail.com
+
+logging:
+  level:
+    org.springframework.amqp: DEBUG
