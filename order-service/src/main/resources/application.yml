@@ -41,7 +41,7 @@ orders:
   delivered-orders-queue: delivered-orders
   cancelled-orders-queue: cancelled-orders
   error-orders-queue: error-orders
-  catalog-service-url: http://catalog-service:8081
+  catalog-service-url: ${CATALOG_SERVICE_URL:http://catalog-service:8081}
   publish-order-events-job-cron: "*/5 * * * * *"
   new-orders-job-cron: "*/10 * * * * *"
 

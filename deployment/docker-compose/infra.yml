@@ -33,6 +33,7 @@ services:
       RABBITMQ_PORT: 5672
       RABBITMQ_USERNAME: rabbitmq
       RABBITMQ_PASSWORD: rabbitmq
+      CATALOG_SERVICE_URL: http://api-gateway:8989/catalog
     ports:
       - "8082:8082"
     restart: unless-stopped
@@ -69,6 +70,22 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+
+  api-gateway:
+    image: ahmedbasuny/bookstore-api-gateway
+    container_name: api-gateway
+    environment:
+      - CATALOG_SERVICE_URL=http://catalog-service:8081
+      - ORDER_SERVICE_URL=http://order-service:8082
+#      - MANAGEMENT_TRACING_ENABLED=true
+#      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
+    ports:
+      - "8989:8989"
+    restart: unless-stopped
     deploy:
       resources:
         limits:

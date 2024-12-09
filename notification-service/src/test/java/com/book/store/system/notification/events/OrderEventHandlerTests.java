@@ -14,11 +14,9 @@ import com.book.store.system.notification.domain.events.OrderErrorEvent;
 import com.book.store.system.notification.domain.model.Address;
 import com.book.store.system.notification.domain.model.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
