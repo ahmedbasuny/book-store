@@ -1,0 +1,18 @@
+.footer-container {
+    position: fixed; /* Sticks the footer to the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ensures the footer spans the full width */
+    background-color: #f8f9fa; /* Light background for the footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+    z-index: 1000; /* Ensures it appears above other elements */
+}
+
+.footer-content {
+    display: flex; /* Align content horizontally */
+    justify-content: center; /* centers the content */
+    align-items: center; /* Center items vertically */
+    padding: 0.5rem 1rem; /* Add some padding */
+    font-size: 0.85rem; /* Smaller font size for a compact footer */
+    color: #6c757d; /* Muted text color */
+}

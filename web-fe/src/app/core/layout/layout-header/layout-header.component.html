@@ -1,0 +1,18 @@
+<div>
+    <p-menubar>
+        <ng-template pTemplate="start">
+            <p-image src="logo/logo.png" alt="Image" width="55" class="logo-img" />
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="flex items-center mr-3">
+                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onCartClick()">
+                    <span>Orders</span>
+                </a>
+                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onCartClick()">
+                    <span>Cart ({{items?.length}})</span>
+                </a>
+                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+            </div>
+        </ng-template>
+    </p-menubar>
+</div>
