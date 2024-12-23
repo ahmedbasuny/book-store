@@ -1,0 +1,48 @@
+name: Web Frontend angular
+
+on:
+  push:
+    paths:
+      - web-fe/**
+    branches:
+      - '**'
+
+jobs:
+  build:
+    name: Build Angular App
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./web-fe
+      DOCKER_IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/web-fe
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: npm run build
+
+      - name: Build Docker image
+        run: docker build -t $DOCKER_IMAGE_NAME ./docker
+
+      - name: Login to Docker Hub
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push Docker image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: docker push $DOCKER_IMAGE_NAME
