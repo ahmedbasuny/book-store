@@ -91,6 +91,13 @@ services:
         limits:
           memory: 700m
 
+  web-fe:
+    image: ahmedbasuny/web-fe
+    container_name: web-app
+    ports:
+      - "5200:80"
+    restart: unless-stopped
+
   catalog-db:
     image: postgres:16-alpine
     container_name: catalog-db
