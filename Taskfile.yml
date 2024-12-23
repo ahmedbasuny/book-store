@@ -1,8 +1,7 @@
 version: 3
 
 vars:
-  GOOS: "{{default OS .GOOS}}"
-  MVNW: '{{if eq .GOOS "windows"}}mvnw.cmd{{else}}./mvnw{{end}}'
+  MVNW: "mvn"
   DC_DIR: "deployment/docker-compose"
   INFRA_DC_FILE: "{{.DC_DIR}}/infra.yml"
 
@@ -41,6 +40,11 @@ tasks:
     deps: [ format ]
     cmds:
       - "{{.MVNW}} -pl notification-service spring-boot:build-image -DskipTests"
+
+  build-gateway:
+    deps: [ format ]
+    cmds:
+      - "{{.MVNW}} -pl api-gateway spring-boot:build-image -DskipTests"
 
   start_infra:
     deps: [ build ]

@@ -9,7 +9,10 @@
                     <span>Orders</span>
                 </a>
                 <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onCartClick()">
-                    <span>Cart ({{cart}})</span>
+                    <span>Cart ({{cartService.products().length}})</span>
+                </a>
+                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onCartClick()">
+                    <span>Login</span>
                 </a>
                 <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
             </div>

@@ -1,1 +1,19 @@
-<p>product-list works!</p>
+<div class="book-list-container">
+    <p-paginator [rows]="10" [totalRecords]="productService.booksPage.value()?.totalElements"
+        [rowsPerPageOptions]="[5, 10, 20]" (onPageChange)="paginate($event)">
+    </p-paginator>
+    <div class="grid">
+        @if (productService.booksPage.isLoading()) {
+        <div class="loading-spinner">
+            <p-progressSpinner ariaLabel="loading" />
+        </div>
+        }
+        @for (book of productService.booksPage.value()?.content; track book.code)
+        {
+        <app-product [book]="book"></app-product>
+        }
+        @if (productService.booksPage.error()) {
+        <p>Error: {{ productService.booksPage.error() }}</p>
+        }
+    </div>
+</div>

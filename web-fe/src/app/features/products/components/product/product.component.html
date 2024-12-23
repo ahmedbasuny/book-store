@@ -1,1 +1,18 @@
-<p>product works!</p>
+<div class="book-card">
+    <div class="mb-1 p-2 flex items-center justify-center">
+        <p-card [style]="{ width: '300px', height: '550px' }">
+            <ng-template pTemplate="header">
+                <img alt="Card" class="book-img" [src]="book().imageUrl" />
+            </ng-template>
+            <ng-template pTemplate="title" class="book-title"> {{book().name}} </ng-template>
+            <ng-template pTemplate="price">
+                <p class="book-price">Price: {{book().price}} $</p>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <div class="card-footer">
+                    <p-button label="Add to Cart" class="add-to-cart-btn" (onClick)="addToCart()"/>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+</div>

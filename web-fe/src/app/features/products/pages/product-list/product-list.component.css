@@ -1,0 +1,32 @@
+/* .book-list-container {
+  padding: 1rem;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.img {
+  height: 230px;
+}
+
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2px;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.loading-spinner {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
