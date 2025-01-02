@@ -1,1 +1,7 @@
 <p>order-list works!</p>
+@for (order of orderService.orders.value(); track order.orderNumber) {
+<div class="row">
+    <div class="col-4">{{order.orderNumber}}</div>
+    <div class="col-3">{{order.orderStatus}}</div>
+</div>
+}

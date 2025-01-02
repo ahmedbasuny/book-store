@@ -34,6 +34,7 @@ services:
       RABBITMQ_USERNAME: rabbitmq
       RABBITMQ_PASSWORD: rabbitmq
       CATALOG_SERVICE_URL: http://api-gateway:8989/catalog
+      OAUTH2_SERVER_URL: http://keycloak:9191/realms/bookstore
     ports:
       - "8082:8082"
     restart: unless-stopped
@@ -81,8 +82,8 @@ services:
     environment:
       - CATALOG_SERVICE_URL=http://catalog-service:8081
       - ORDER_SERVICE_URL=http://order-service:8082
-#      - MANAGEMENT_TRACING_ENABLED=true
-#      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
+    #      - MANAGEMENT_TRACING_ENABLED=true
+    #      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
     ports:
       - "8989:8989"
     restart: unless-stopped
@@ -180,6 +181,28 @@ services:
         limits:
           memory: 500m
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    container_name: keycloak
+    command: [ 'start-dev', '--import-realm', '--http-port=9191' ]
+    hostname: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin12345
+    ports:
+      - "9191:9191"
+    volumes:
+    #      - keycloak:/opt/keycloak/data/import
+      - ./realm-config:/opt/keycloak/data/import
+    deploy:
+      resources:
+        limits:
+          memory: 2gb
+      # export realm
+      # docker exec -it keycloak bash -c "cp -rp /opt/keycloak/data/h2 /tmp ; /opt/keycloak/bin/kc.sh export --dir /opt/keycloak/data/import --realm bookstore --db dev-file --db-url 'jdbc:h2:file:/tmp/h2/keycloakdb;NON_KEYWORDS=VALUE' --users realm_file"
+
+
+
   mailhog:
     image: mailhog/mailhog:v1.0.1
     container_name: mailhog
@@ -211,20 +234,21 @@ services:
         chmod 600 /tmp/pgpassfile && \
         /entrypoint.sh
 
-#  portainer: # admin123456789
-#    image: portainer/portainer-ce
-#    container_name: portainer
-#    restart: always
-#    ports:
-#      - "9000:9000"
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - portainer_data:/data
+  portainer: # admin123456789
+    image: portainer/portainer-ce
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
 
 volumes:
   catalog_db:
   order_db:
   notification_db:
-#  portainer_data:
+  portainer_data:
   pgadmin:
+#  keycloak:
 

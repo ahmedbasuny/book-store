@@ -5,16 +5,27 @@
         </ng-template>
         <ng-template pTemplate="end">
             <div class="flex items-center mr-3">
-                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onCartClick()">
+                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onProductsClick()">
+                    <span>Products</span>
+                </a>
+                @if (keycloak.authenticated) {
+                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onOrdersClick()">
                     <span>Orders</span>
                 </a>
+                }
                 <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onCartClick()">
                     <span>Cart ({{cartService.products().length}})</span>
                 </a>
-                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onCartClick()">
+                @if (keycloak.authenticated) {
+                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onLogoutClick()">
+                    <span>Logout</span>
+                </a>
+                } @else {
+                <a pRipple class="mr-3 flex items-center p-menubar-item-link" (click)="onLoginClick()">
                     <span>Login</span>
                 </a>
-                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+                }
             </div>
         </ng-template>
     </p-menubar>

@@ -19,6 +19,27 @@ spring:
     username: ${RABBITMQ_USERNAME:rabbitmq}
     password: ${RABBITMQ_PASSWORD:rabbitmq}
 
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: book-store-ms
+            client-secret: vALN4yRejblYL8r2Qe8ciLqTmFCw3r9T
+            scope: openid
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            issuer-uri: ${REALM_URL}
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: ${REALM_URL}
+
+
+
+
+
 server:
   port: 8082
   shutdown: GRACEFUL
@@ -48,6 +69,7 @@ orders:
 logging:
   level:
     org.springframework.amqp: DEBUG
+    org.keycloak: DEBUG
 
 resilience4j:
   retry:
@@ -64,4 +86,7 @@ resilience4j:
         waitDurationInOpenState: 20s
         permittedNumberOfCallsInHalfOpenState: 2
         failureRateThreshold: 50
+
+REALM_URL: ${OAUTH2_SERVER_URL:http://localhost:9191/realms/bookstore}
+
 
